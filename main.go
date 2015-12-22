@@ -21,8 +21,8 @@ func main() {
 	config.Hostname = "" // leave blank for not multi-tenant
 
 	_, localNetwork, _ := net.ParseCIDR("127.0.0.1/24")
-	config.WebhookWhiteList = []*net.IPNet{localNetwork}
-	config.PollReplyWhiteList = []*net.IPNet{localNetwork}
+	config.WebhookFilters = []*net.IPNet{localNetwork}
+	config.PollReplyFilters = []*net.IPNet{localNetwork}
 
 	webhookproxy.RegisterHandlers(&config, http.DefaultServeMux)
 	http.ListenAndServe(":8080", nil)
